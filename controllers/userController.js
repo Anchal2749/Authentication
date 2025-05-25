@@ -239,16 +239,26 @@ export const login = catchAsyncError(async (req, res, next) => {
 });
 
 export const logout = catchAsyncError(async (req, res, next) => {
+  // res
+  //   .status(200)
+  //   .cookie("token", "", {
+  //     expires: new Date(Date.now()),
+  //     httpOnly: true,
+  //   })
+  //   .json({
+  //     success: true,
+  //     message: "Logged out successfully.",
+  //   });
   res
-    .status(200)
-    .cookie("token", "", {
-      expires: new Date(Date.now()),
-      httpOnly: true,
-    })
-    .json({
-      success: true,
-      message: "Logged out successfully.",
-    });
+  .status(200)
+  .cookie("token", "", {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+    sameSite: "None", // must be 'None' for cross-origin
+    secure: true,     // must be true when sameSite is None
+  })
+  .json({ success: true, message: "Logged out successfully." });
+
 });
 
 export const getUser = catchAsyncError(async (req, res, next) => {
