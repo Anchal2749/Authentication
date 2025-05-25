@@ -13,3 +13,7 @@ const port = process.env.PORT || 4000;  // Fallback for local development
 app.listen(port, '0.0.0.0', () => {  // Explicitly bind to all interfaces
   console.log(`Server listening on port ${port}`);
 });
+
+app.get('/', (req, res) => {
+    res.send('Welcome to Auth');
+});
